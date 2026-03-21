@@ -1,0 +1,1053 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DELTA Private Kitchen | Exclusive Dining Experience</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/lucide@0.544.0/dist/umd/lucide.min.js"></script>
+    <style>
+        :root {
+            --primary-color: #4A90E2;
+            --secondary-color: #50E3C2;
+            --accent-color: #F5A623;
+            --dark-color: #333333;
+            --light-color: #FFFFFF;
+        }
+        html {
+            scroll-behavior: smooth;
+        }
+        body {
+            font-family: 'Inter', sans-serif;
+        }
+        .text-gradient {
+            background: linear-gradient(90deg, var(--primary-color), var(--secondary-color));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        .btn-primary {
+            background: linear-gradient(90deg, var(--primary-color), var(--secondary-color));
+            transition: all 0.3s ease;
+        }
+        .btn-primary:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+        }
+        .section-title::after {
+            content: '';
+            display: block;
+            width: 80px;
+            height: 4px;
+            background: linear-gradient(90deg, var(--primary-color), var(--secondary-color));
+            margin: 15px 0;
+        }
+        .event-card {
+            transition: all 0.3s ease;
+        }
+        .event-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
+        }
+        .gallery-item {
+            transition: all 0.3s ease;
+            overflow: hidden;
+        }
+        .gallery-item img {
+            transition: transform 0.5s ease;
+        }
+        .gallery-item:hover img {
+            transform: scale(1.1);
+        }
+        .testimonial-card {
+            transition: all 0.3s ease;
+        }
+        .testimonial-card:hover {
+            transform: translateY(-5px);
+        }
+        .nav-link {
+            position: relative;
+        }
+        .nav-link::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            bottom: -5px;
+            left: 0;
+            background-color: var(--primary-color);
+            transition: width 0.3s ease;
+        }
+        .nav-link:hover::after {
+            width: 100%;
+        }
+        .active::after {
+            width: 100%;
+        }
+        .mobile-nav {
+            transition: transform 0.3s ease-in-out;
+        }
+        .mobile-nav.hidden {
+            transform: translateX(-100%);
+        }
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        .animate-fade-in {
+            animation: fadeIn 0.8s ease forwards;
+        }
+        .delay-100 { animation-delay: 0.1s; }
+        .delay-200 { animation-delay: 0.2s; }
+        .delay-300 { animation-delay: 0.3s; }
+        .delay-400 { animation-delay: 0.4s; }
+        .delay-500 { animation-delay: 0.5s; }
+    </style>
+</head>
+<body class="bg-gray-50">
+
+    <!-- Header & Navigation -->
+    <header class="fixed w-full bg-white shadow-md z-50 transition-all duration-300" id="header">
+        <div class="container mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center py-4">
+                <div class="flex items-center">
+                    <a href="#" class="text-2xl font-bold text-gradient">DELTA Private Kitchen</a>
+                </div>
+
+                <!-- Desktop Navigation -->
+                <nav class="hidden md:flex space-x-8">
+                    <a href="#home" class="nav-link active text-gray-800 hover:text-gray-600 font-medium" data-lang="nav-home">Home</a>
+                    <a href="#about" class="nav-link text-gray-800 hover:text-gray-600 font-medium" data-lang="nav-about">About</a>
+                    <a href="#events" class="nav-link text-gray-800 hover:text-gray-600 font-medium" data-lang="nav-events">Events</a>
+                    <a href="#gallery" class="nav-link text-gray-800 hover:text-gray-600 font-medium" data-lang="nav-gallery">Gallery</a>
+                    <a href="#testimonials" class="nav-link text-gray-800 hover:text-gray-600 font-medium" data-lang="nav-testimonials">Testimonials</a>
+                    <a href="https://www.deltamarriotthotel.com/reservations" target="_blank" class="nav-link text-gray-800 hover:text-gray-600 font-medium" data-lang="nav-contact">Contact</a>
+                </nav>
+
+                <div class="flex items-center space-x-4">
+                    <a href="tel:+16268784478" class="flex items-center space-x-1 text-gray-600 hover:text-gray-900 bg-blue-50 px-3 py-2 rounded-full">
+                        <i data-lucide="phone" class="w-5 h-5"></i>
+                        <span class="hidden sm:inline">(626) 878-4478</span>
+                    </a>
+                    <button id="lang-toggle" class="flex items-center space-x-1 text-gray-600 hover:text-gray-900">
+                        <i data-lucide="globe-2" class="w-5 h-5"></i>
+                        <span id="current-lang">English</span>
+                    </button>
+                    <button id="mobile-menu-button" class="md:hidden text-gray-600 hover:text-gray-900">
+                        <i data-lucide="menu" class="w-6 h-6"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Mobile Navigation -->
+        <div id="mobile-nav" class="mobile-nav hidden md:hidden bg-white shadow-lg absolute w-full">
+            <div class="container mx-auto px-4 py-4">
+                <nav class="flex flex-col space-y-4">
+                    <a href="tel:+16268784478" class="text-gray-800 hover:text-gray-600 font-medium py-2 border-b border-gray-200 flex items-center">
+                        <i data-lucide="phone" class="w-5 h-5 mr-2"></i>
+                        (626) 878-4478
+                    </a>
+                    <a href="#home" class="text-gray-800 hover:text-gray-600 font-medium py-2 border-b border-gray-200" data-lang="nav-home">Home</a>
+                    <a href="#about" class="text-gray-800 hover:text-gray-600 font-medium py-2 border-b border-gray-200" data-lang="nav-about">About</a>
+                    <a href="#events" class="text-gray-800 hover:text-gray-600 font-medium py-2 border-b border-gray-200" data-lang="nav-events">Events</a>
+                    <a href="#gallery" class="text-gray-800 hover:text-gray-600 font-medium py-2 border-b border-gray-200" data-lang="nav-gallery">Gallery</a>
+                    <a href="#testimonials" class="text-gray-800 hover:text-gray-600 font-medium py-2 border-b border-gray-200" data-lang="nav-testimonials">Testimonials</a>
+                    <a href="https://www.deltamarriotthotel.com/reservations" target="_blank" class="text-gray-800 hover:text-gray-600 font-medium py-2" data-lang="nav-contact">Contact</a>
+                </nav>
+            </div>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section id="home" class="pt-24 pb-12 md:pt-32 md:pb-24 bg-cover bg-center" style="background-image: url('https://p3-flow-imagex-download-sign.byteimg.com/tos-cn-i-a9rns2rl98/69bb670610c148be89789bb3c1e6962b.jpeg~tplv-a9rns2rl98-24:720:720.png?lk3s=8e244e95&rcl=20260321164155F8A6EB60DD51D76C40FE&rrcfp=8a172a1a&x-expires=1774687316&x-signature=PtYLtNn4FAYhYQ4W%2BnTh%2Fzn%2FGe4%3D');">
+        <div class="container mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="bg-black bg-opacity-50 rounded-lg p-8 md:p-12 max-w-3xl animate-fade-in">
+                <h1 class="text-4xl md:text-5xl lg:text-6xl font-bold text-white mb-4" data-lang="hero-title">Exquisite Private Dining</h1>
+                <p class="text-xl md:text-2xl text-gray-200 mb-8" data-lang="hero-subtitle">Tailored Culinary Experiences for Intimate Gatherings, Weddings, and Corporate Events</p>
+                <div class="flex flex-col sm:flex-row space-y-4 sm:space-y-0 sm:space-x-4">
+                    <a href="https://www.deltamarriotthotel.com/reservations" target="_blank" class="btn-primary text-white font-bold py-3 px-8 rounded-full text-center">
+                        <span data-lang="hero-book-now">Book Now</span>
+                    </a>
+                    <a href="https://www.deltamarriotthotel.com/" target="_blank" class="bg-transparent border-2 border-white text-white font-bold py-3 px-8 rounded-full text-center hover:bg-white hover:text-gray-900 transition duration-300">
+                        <span data-lang="hero-learn-more">Learn More</span>
+                    </a>
+                    <a href="tel:+16268784478" class="bg-white text-gray-900 font-bold py-3 px-8 rounded-full text-center hover:bg-gray-100 transition duration-300 flex items-center justify-center">
+                        <i data-lucide="phone" class="w-5 h-5 mr-2"></i>
+                        <span>(626) 878-4478</span>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about" class="py-16 md:py-24 bg-white">
+        <div class="container mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex flex-col md:flex-row items-center">
+                <div class="md:w-1/2 mb-10 md:mb-0 pr-0 md:pr-12">
+                    <h2 class="section-title text-3xl md:text-4xl font-bold text-gray-800 mb-6" data-lang="about-title">About DELTA Private Kitchen</h2>
+                    <p class="text-gray-600 mb-6 leading-relaxed" data-lang="about-p1">Nestled in the heart of the city, DELTA Private Kitchen is a premium dining destination specializing in exclusive, customized culinary experiences. Our elegant private rooms and exceptional service create the perfect ambiance for intimate gatherings and special celebrations.</p>
+                    <p class="text-gray-600 mb-8 leading-relaxed" data-lang="about-p2">With a focus on privacy, personalized menus, and attentive service, we cater to friends and family gatherings, wedding celebrations, engagement parties, and high-end business dinners, ensuring every occasion becomes a cherished memory.</p>
+                    <div class="grid grid-cols-2 gap-6">
+                        <div class="flex items-start">
+                            <div class="bg-blue-100 p-3 rounded-full mr-4">
+                                <i data-lucide="users" class="w-6 h-6 text-blue-500"></i>
+                            </div>
+                            <div>
+                                <h4 class="font-bold text-gray-800 mb-1" data-lang="about-capacity">Large Capacity</h4>
+                                <p class="text-gray-600 text-sm" data-lang="about-capacity-desc">Up to 300 guests</p>
+                            </div>
+                        </div>
+                        <div class="flex items-start">
+                            <div class="bg-green-100 p-3 rounded-full mr-4">
+                                <i data-lucide="utensils-crossed" class="w-6 h-6 text-green-500"></i>
+                            </div>
+                            <div>
+                                <h4 class="font-bold text-gray-800 mb-1" data-lang="about-catering">Exquisite Catering</h4>
+                                <p class="text-gray-600 text-sm" data-lang="about-catering-desc">Award-winning chefs</p>
+                            </div>
+                        </div>
+                        <div class="flex items-start">
+                            <div class="bg-yellow-100 p-3 rounded-full mr-4">
+                                <i data-lucide="camera" class="w-6 h-6 text-yellow-500"></i>
+                            </div>
+                            <div>
+                                <h4 class="font-bold text-gray-800 mb-1" data-lang="about-photo">Photo Ready</h4>
+                                <p class="text-gray-600 text-sm" data-lang="about-photo-desc">Stunning backdrops</p>
+                            </div>
+                        </div>
+                        <div class="flex items-start">
+                            <div class="bg-purple-100 p-3 rounded-full mr-4">
+                                <i data-lucide="service" class="w-6 h-6 text-purple-500"></i>
+                            </div>
+                            <div>
+                                <h4 class="font-bold text-gray-800 mb-1" data-lang="about-service">Premium Service</h4>
+                                <p class="text-gray-600 text-sm" data-lang="about-service-desc">24/7 support</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="md:w-1/2">
+                    <div class="relative">
+                        <img src="https://p3-flow-imagex-download-sign.byteimg.com/tos-cn-i-a9rns2rl98/feb9db2e0fd44e908303dfe4426ac22a.jpeg~tplv-a9rns2rl98-24:720:720.png?lk3s=8e244e95&rcl=20260321164155F8A6EB60DD51D76C40FE&rrcfp=8a172a1a&x-expires=1774687316&x-signature=WDCeYDfQn8K1Fo5yE2oaDjY8T0U%3D" alt="Venue Interior" class="rounded-lg shadow-xl w-full">
+                        <div class="absolute -bottom-10 -left-10 w-64 h-64 bg-white p-4 rounded-lg shadow-lg hidden md:block">
+                            <img src="https://p11-flow-imagex-download-sign.byteimg.com/tos-cn-i-a9rns2rl98/b82a69698f8647c88bb3689ed9b94e75.jpeg~tplv-a9rns2rl98-24:720:720.png?lk3s=8e244e95&rcl=20260321164155F8A6EB60DD51D76C40FE&rrcfp=8a172a1a&x-expires=1774687316&x-signature=dd6NKEjg2x4Xjj1MaXspEsDFHLc%3D" alt="Event Setup" class="rounded w-full h-full object-cover">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Events Section -->
+    <section id="events" class="py-16 md:py-24 bg-gray-50">
+        <div class="container mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16">
+                <h2 class="section-title text-3xl md:text-4xl font-bold text-gray-800 mb-4 inline-block" data-lang="events-title">Our Culinary Experiences</h2>
+                <p class="text-gray-600 max-w-3xl mx-auto" data-lang="events-subtitle">We specialize in creating unforgettable dining experiences tailored to your specific occasion and preferences.</p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+                <!-- Wedding & Engagement Events -->
+                <div class="event-card bg-white rounded-lg overflow-hidden shadow-lg">
+                    <div class="relative">
+                        <img src="https://p3-flow-imagex-download-sign.byteimg.com/tos-cn-i-a9rns2rl98/5ef582eab0b648aeb7ac74a340194005.png~tplv-a9rns2rl98-24:720:720.png?lk3s=8e244e95&rcl=20260321164155F8A6EB60DD51D76C40FE&rrcfp=8a172a1a&x-expires=1774687316&x-signature=olb%2BdhgKaKEzMIx7LmEYiwbc22I%3D" alt="Wedding Events" class="w-full h-48 object-cover">
+                        <div class="absolute top-4 right-4 bg-white rounded-full p-2 shadow-md">
+                            <i data-lucide="heart" class="w-6 h-6 text-red-500"></i>
+                        </div>
+                    </div>
+                    <div class="p-6">
+                        <h3 class="text-xl font-bold text-gray-800 mb-2" data-lang="events-wedding-title">Wedding & Engagement</h3>
+                        <p class="text-gray-600 mb-4" data-lang="events-wedding-desc">Celebrate your love with an intimate culinary experience in our elegant private dining spaces.</p>
+                        <ul class="mb-6 space-y-2">
+                            <li class="flex items-center text-gray-600 text-sm">
+                                <i data-lucide="check" class="w-4 h-4 text-green-500 mr-2"></i>
+                                <span data-lang="events-wedding-feature-1">Custom wedding menus</span>
+                            </li>
+                            <li class="flex items-center text-gray-600 text-sm">
+                                <i data-lucide="check" class="w-4 h-4 text-green-500 mr-2"></i>
+                                <span data-lang="events-wedding-feature-2">Intimate private settings</span>
+                            </li>
+                            <li class="flex items-center text-gray-600 text-sm">
+                                <i data-lucide="check" class="w-4 h-4 text-green-500 mr-2"></i>
+                                <span data-lang="events-wedding-feature-3">Personalized service</span>
+                            </li>
+                        </ul>
+                        <a href="#contact" class="text-primary-color font-medium hover:underline flex items-center">
+                            <span data-lang="events-learn-more">Learn More</span>
+                            <i data-lucide="arrow-right" class="w-4 h-4 ml-1"></i>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Friends & Family Gatherings -->
+                <div class="event-card bg-white rounded-lg overflow-hidden shadow-lg">
+                    <div class="relative">
+                        <img src="https://p11-flow-imagex-download-sign.byteimg.com/tos-cn-i-a9rns2rl98/63f839b5924c47ccb9a1dccaf90960b5.jpeg~tplv-a9rns2rl98-24:720:720.png?lk3s=8e244e95&rcl=20260321164155F8A6EB60DD51D76C40FE&rrcfp=8a172a1a&x-expires=1774687316&x-signature=v6r9%2B%2BOz8GRO%2BQkJbdsAtk9CCy0%3D" alt="Friends & Family Gatherings" class="w-full h-48 object-cover">
+                        <div class="absolute top-4 right-4 bg-white rounded-full p-2 shadow-md">
+                            <i data-lucide="users" class="w-6 h-6 text-blue-500"></i>
+                        </div>
+                    </div>
+                    <div class="p-6">
+                        <h3 class="text-xl font-bold text-gray-800 mb-2" data-lang="events-baby-title">Friends & Family</h3>
+                        <p class="text-gray-600 mb-4" data-lang="events-baby-desc">Create lasting memories with your loved ones in our warm and inviting private dining spaces.</p>
+                        <ul class="mb-6 space-y-2">
+                            <li class="flex items-center text-gray-600 text-sm">
+                                <i data-lucide="check" class="w-4 h-4 text-green-500 mr-2"></i>
+                                <span data-lang="events-baby-feature-1">Family-style dining options</span>
+                            </li>
+                            <li class="flex items-center text-gray-600 text-sm">
+                                <i data-lucide="check" class="w-4 h-4 text-green-500 mr-2"></i>
+                                <span data-lang="events-baby-feature-2">Customizable menu packages</span>
+                            </li>
+                            <li class="flex items-center text-gray-600 text-sm">
+                                <i data-lucide="check" class="w-4 h-4 text-green-500 mr-2"></i>
+                                <span data-lang="events-baby-feature-3">Flexible seating arrangements</span>
+                            </li>
+                        </ul>
+                        <a href="#contact" class="text-primary-color font-medium hover:underline flex items-center">
+                            <span data-lang="events-learn-more">Learn More</span>
+                            <i data-lucide="arrow-right" class="w-4 h-4 ml-1"></i>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Corporate Dining -->
+                <div class="event-card bg-white rounded-lg overflow-hidden shadow-lg">
+                    <div class="relative">
+                        <img src="https://p11-flow-imagex-download-sign.byteimg.com/tos-cn-i-a9rns2rl98/2d0e7bb54f5b48af931bb9f269e6dc8b.jpeg~tplv-a9rns2rl98-24:720:720.png?lk3s=8e244e95&rcl=20260321164155F8A6EB60DD51D76C40FE&rrcfp=8a172a1a&x-expires=1774687316&x-signature=alcOFsNYvOSWnu%2BlD4wOzEPG0nw%3D" alt="Corporate Dining" class="w-full h-48 object-cover">
+                        <div class="absolute top-4 right-4 bg-white rounded-full p-2 shadow-md">
+                            <i data-lucide="briefcase" class="w-6 h-6 text-gray-700"></i>
+                        </div>
+                    </div>
+                    <div class="p-6">
+                        <h3 class="text-xl font-bold text-gray-800 mb-2" data-lang="events-corporate-title">Corporate Dining</h3>
+                        <p class="text-gray-600 mb-4" data-lang="events-corporate-desc">Impress clients and colleagues with sophisticated private dining experiences for business meetings and celebrations.</p>
+                        <ul class="mb-6 space-y-2">
+                            <li class="flex items-center text-gray-600 text-sm">
+                                <i data-lucide="check" class="w-4 h-4 text-green-500 mr-2"></i>
+                                <span data-lang="events-corporate-feature-1">Executive dining packages</span>
+                            </li>
+                            <li class="flex items-center text-gray-600 text-sm">
+                                <i data-lucide="check" class="w-4 h-4 text-green-500 mr-2"></i>
+                                <span data-lang="events-corporate-feature-2">Business lunch options</span>
+                            </li>
+                            <li class="flex items-center text-gray-600 text-sm">
+                                <i data-lucide="check" class="w-4 h-4 text-green-500 mr-2"></i>
+                                <span data-lang="events-corporate-feature-3">High-end接待服务</span>
+                            </li>
+                        </ul>
+                        <a href="#contact" class="text-primary-color font-medium hover:underline flex items-center">
+                            <span data-lang="events-learn-more">Learn More</span>
+                            <i data-lucide="arrow-right" class="w-4 h-4 ml-1"></i>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Private Dining Experiences -->
+                <div class="event-card bg-white rounded-lg overflow-hidden shadow-lg">
+                    <div class="relative">
+                        <img src="https://p11-flow-imagex-download-sign.byteimg.com/tos-cn-i-a9rns2rl98/b82a69698f8647c88bb3689ed9b94e75.jpeg~tplv-a9rns2rl98-24:720:720.png?lk3s=8e244e95&rcl=20260321164155F8A6EB60DD51D76C40FE&rrcfp=8a172a1a&x-expires=1774687316&x-signature=dd6NKEjg2x4Xjj1MaXspEsDFHLc%3D" alt="Private Dining Experiences" class="w-full h-48 object-cover">
+                        <div class="absolute top-4 right-4 bg-white rounded-full p-2 shadow-md">
+                            <i data-lucide="utensils-crossed" class="w-6 h-6 text-pink-500"></i>
+                        </div>
+                    </div>
+                    <div class="p-6">
+                        <h3 class="text-xl font-bold text-gray-800 mb-2" data-lang="events-birthday-title">Private Dining</h3>
+                        <p class="text-gray-600 mb-4" data-lang="events-birthday-desc">Experience exclusive culinary creations in our private dining rooms with personalized service.</p>
+                        <ul class="mb-6 space-y-2">
+                            <li class="flex items-center text-gray-600 text-sm">
+                                <i data-lucide="check" class="w-4 h-4 text-green-500 mr-2"></i>
+                                <span data-lang="events-birthday-feature-1">Chef's special menus</span>
+                            </li>
+                            <li class="flex items-center text-gray-600 text-sm">
+                                <i data-lucide="check" class="w-4 h-4 text-green-500 mr-2"></i>
+                                <span data-lang="events-birthday-feature-2">Private dining rooms</span>
+                            </li>
+                            <li class="flex items-center text-gray-600 text-sm">
+                                <i data-lucide="check" class="w-4 h-4 text-green-500 mr-2"></i>
+                                <span data-lang="events-birthday-feature-3">Customized experiences</span>
+                            </li>
+                        </ul>
+                        <a href="#contact" class="text-primary-color font-medium hover:underline flex items-center">
+                            <span data-lang="events-learn-more">Learn More</span>
+                            <i data-lucide="arrow-right" class="w-4 h-4 ml-1"></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Gallery Section -->
+    <section id="gallery" class="py-16 md:py-24 bg-white">
+        <div class="container mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16">
+                <h2 class="section-title text-3xl md:text-4xl font-bold text-gray-800 mb-4 inline-block" data-lang="gallery-title">Our Gallery</h2>
+                <p class="text-gray-600 max-w-3xl mx-auto" data-lang="gallery-subtitle">Browse through our stunning venue transformations for various events.</p>
+            </div>
+
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+                <div class="gallery-item rounded-lg overflow-hidden shadow-lg">
+                    <img src="https://p3-flow-imagex-download-sign.byteimg.com/tos-cn-i-a9rns2rl98/69bb670610c148be89789bb3c1e6962b.jpeg~tplv-a9rns2rl98-24:720:720.png?lk3s=8e244e95&rcl=20260321164155F8A6EB60DD51D76C40FE&rrcfp=8a172a1a&x-expires=1774687316&x-signature=PtYLtNn4FAYhYQ4W%2BnTh%2Fzn%2FGe4%3D" alt="Event Hall" class="w-full h-64 object-cover">
+                </div>
+                <div class="gallery-item rounded-lg overflow-hidden shadow-lg">
+                    <img src="https://p3-flow-imagex-download-sign.byteimg.com/tos-cn-i-a9rns2rl98/feb9db2e0fd44e908303dfe4426ac22a.jpeg~tplv-a9rns2rl98-24:720:720.png?lk3s=8e244e95&rcl=20260321164155F8A6EB60DD51D76C40FE&rrcfp=8a172a1a&x-expires=1774687316&x-signature=WDCeYDfQn8K1Fo5yE2oaDjY8T0U%3D" alt="Dining Area" class="w-full h-64 object-cover">
+                </div>
+                <div class="gallery-item rounded-lg overflow-hidden shadow-lg">
+                    <img src="https://p11-flow-imagex-download-sign.byteimg.com/tos-cn-i-a9rns2rl98/63f839b5924c47ccb9a1dccaf90960b5.jpeg~tplv-a9rns2rl98-24:720:720.png?lk3s=8e244e95&rcl=20260321164155F8A6EB60DD51D76C40FE&rrcfp=8a172a1a&x-expires=1774687316&x-signature=v6r9%2B%2BOz8GRO%2BQkJbdsAtk9CCy0%3D" alt="Private Room" class="w-full h-64 object-cover">
+                </div>
+                <div class="gallery-item rounded-lg overflow-hidden shadow-lg">
+                    <img src="https://p11-flow-imagex-download-sign.byteimg.com/tos-cn-i-a9rns2rl98/b82a69698f8647c88bb3689ed9b94e75.jpeg~tplv-a9rns2rl98-24:720:720.png?lk3s=8e244e95&rcl=20260321164155F8A6EB60DD51D76C40FE&rrcfp=8a172a1a&x-expires=1774687316&x-signature=dd6NKEjg2x4Xjj1MaXspEsDFHLc%3D" alt="Birthday Setup" class="w-full h-64 object-cover">
+                </div>
+                <div class="gallery-item rounded-lg overflow-hidden shadow-lg">
+                    <img src="https://p3-flow-imagex-download-sign.byteimg.com/tos-cn-i-a9rns2rl98/5ef582eab0b648aeb7ac74a340194005.png~tplv-a9rns2rl98-24:720:720.png?lk3s=8e244e95&rcl=20260321164155F8A6EB60DD51D76C40FE&rrcfp=8a172a1a&x-expires=1774687316&x-signature=olb%2BdhgKaKEzMIx7LmEYiwbc22I%3D" alt="Wedding Setup" class="w-full h-64 object-cover">
+                </div>
+                <div class="gallery-item rounded-lg overflow-hidden shadow-lg">
+                    <img src="https://p11-flow-imagex-download-sign.byteimg.com/tos-cn-i-a9rns2rl98/2d0e7bb54f5b48af931bb9f269e6dc8b.jpeg~tplv-a9rns2rl98-24:720:720.png?lk3s=8e244e95&rcl=20260321164155F8A6EB60DD51D76C40FE&rrcfp=8a172a1a&x-expires=1774687316&x-signature=alcOFsNYvOSWnu%2BlD4wOzEPG0nw%3D" alt="Entrance" class="w-full h-64 object-cover">
+                </div>
+                <div class="gallery-item rounded-lg overflow-hidden shadow-lg">
+                    <img src="https://p3-flow-imagex-download-sign.byteimg.com/tos-cn-i-a9rns2rl98/02f813b9d9724583b2a90a42b7e792fc.jpeg~tplv-a9rns2rl98-24:720:720.jpeg?lk3s=8e244e95&rcl=20260321165348ABD9A888C3F77C64EF89&rrcfp=8a172a1a&x-expires=1774688028&x-signature=JflOC8d2tyhoVz3SAQQWhEctrtc%3D" alt="Blue Themed Event" class="w-full h-64 object-cover">
+                </div>
+                <div class="gallery-item rounded-lg overflow-hidden shadow-lg">
+                    <img src="https://p11-flow-imagex-download-sign.byteimg.com/tos-cn-i-a9rns2rl98/b9bdeed49e324a13b139dfaae0a8b3e4.jpeg~tplv-a9rns2rl98-24:720:720.jpeg?lk3s=8e244e95&rcl=20260321165348ABD9A888C3F77C64EF89&rrcfp=8a172a1a&x-expires=1774688028&x-signature=acmcEuhnWmabaUygKkNZ3hO3IMQ%3D" alt="Elegant Event Setup" class="w-full h-64 object-cover">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Testimonials Section -->
+    <section id="testimonials" class="py-16 md:py-24 bg-gray-50">
+        <div class="container mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16">
+                <h2 class="section-title text-3xl md:text-4xl font-bold text-gray-800 mb-4 inline-block" data-lang="testimonials-title">What Our Clients Say</h2>
+                <p class="text-gray-600 max-w-3xl mx-auto" data-lang="testimonials-subtitle">Hear from our clients about their experiences with us.</p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <div class="testimonial-card bg-white p-8 rounded-lg shadow-lg">
+                    <div class="flex items-center mb-6">
+                        <div class="text-yellow-400 flex">
+                            <i data-lucide="star" class="w-5 h-5 fill-current"></i>
+                            <i data-lucide="star" class="w-5 h-5 fill-current"></i>
+                            <i data-lucide="star" class="w-5 h-5 fill-current"></i>
+                            <i data-lucide="star" class="w-5 h-5 fill-current"></i>
+                            <i data-lucide="star" class="w-5 h-5 fill-current"></i>
+                        </div>
+                    </div>
+                    <p class="text-gray-600 italic mb-6" data-lang="testimonial-1">Our wedding was absolutely perfect! The venue was stunning, the staff was incredibly helpful, and the food was delicious. We couldn't have asked for a better experience.</p>
+                    <div class="flex items-center">
+                        <div class="mr-4">
+                            <div class="w-12 h-12 bg-gray-300 rounded-full"></div>
+                        </div>
+                        <div>
+                            <h4 class="font-bold text-gray-800" data-lang="testimonial-1-name">Sarah & John</h4>
+                            <p class="text-gray-500 text-sm" data-lang="testimonial-1-event">Wedding Clients</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="testimonial-card bg-white p-8 rounded-lg shadow-lg">
+                    <div class="flex items-center mb-6">
+                        <div class="text-yellow-400 flex">
+                            <i data-lucide="star" class="w-5 h-5 fill-current"></i>
+                            <i data-lucide="star" class="w-5 h-5 fill-current"></i>
+                            <i data-lucide="star" class="w-5 h-5 fill-current"></i>
+                            <i data-lucide="star" class="w-5 h-5 fill-current"></i>
+                            <i data-lucide="star" class="w-5 h-5 fill-current"></i>
+                        </div>
+                    </div>
+                    <p class="text-gray-600 italic mb-6" data-lang="testimonial-2">We held our corporate gala here and it was a huge success. The space was elegant, the service was impeccable, and all our guests were impressed.</p>
+                    <div class="flex items-center">
+                        <div class="mr-4">
+                            <div class="w-12 h-12 bg-gray-300 rounded-full"></div>
+                        </div>
+                        <div>
+                            <h4 class="font-bold text-gray-800" data-lang="testimonial-2-name">Michael Thompson</h4>
+                            <p class="text-gray-500 text-sm" data-lang="testimonial-2-event">CEO, TechCorp</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="testimonial-card bg-white p-8 rounded-lg shadow-lg">
+                    <div class="flex items-center mb-6">
+                        <div class="text-yellow-400 flex">
+                            <i data-lucide="star" class="w-5 h-5 fill-current"></i>
+                            <i data-lucide="star" class="w-5 h-5 fill-current"></i>
+                            <i data-lucide="star" class="w-5 h-5 fill-current"></i>
+                            <i data-lucide="star" class="w-5 h-5 fill-current"></i>
+                            <i data-lucide="star" class="w-5 h-5 fill-current"></i>
+                        </div>
+                    </div>
+                    <p class="text-gray-600 italic mb-6" data-lang="testimonial-3">My daughter's birthday party was magical! The decorations were beautiful, the staff was friendly and attentive, and all the kids had a fantastic time.</p>
+                    <div class="flex items-center">
+                        <div class="mr-4">
+                            <div class="w-12 h-12 bg-gray-300 rounded-full"></div>
+                        </div>
+                        <div>
+                            <h4 class="font-bold text-gray-800" data-lang="testimonial-3-name">Jennifer Lee</h4>
+                            <p class="text-gray-500 text-sm" data-lang="testimonial-3-event">Birthday Party Client</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact & Booking Section -->
+    <section id="contact" class="py-16 md:py-24 bg-white">
+        <div class="container mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex flex-col lg:flex-row">
+                <div class="lg:w-1/2 mb-12 lg:mb-0 lg:pr-12">
+                    <h2 class="section-title text-3xl md:text-4xl font-bold text-gray-800 mb-6" data-lang="contact-title">Contact Us</h2>
+                    <p class="text-gray-600 mb-8" data-lang="contact-p1">Ready to plan your special event? Contact us today to schedule a tour or request more information.</p>
+                    
+                    <div class="space-y-6">
+                        <div class="flex items-start">
+                            <div class="bg-blue-100 p-3 rounded-full mr-4">
+                                <i data-lucide="map-pin" class="w-6 h-6 text-blue-500"></i>
+                            </div>
+                            <div>
+                                <h4 class="font-bold text-gray-800 mb-1" data-lang="contact-address">Address</h4>
+                                <p class="text-gray-600" data-lang="contact-address-desc">2200 E Holt Blvd, inside hotel, Ontario, CA 91761</p>
+                            </div>
+                        </div>
+                        <div class="flex items-start">
+                            <div class="bg-green-100 p-3 rounded-full mr-4">
+                                <i data-lucide="phone" class="w-6 h-6 text-green-500"></i>
+                            </div>
+                            <div>
+                                <h4 class="font-bold text-gray-800 mb-1" data-lang="contact-phone">Phone</h4>
+                                <p class="text-gray-600"><a href="tel:+16268784478" class="hover:text-blue-500" data-lang="contact-phone-desc">(626) 878-4478</a></p>
+                            </div>
+                        </div>
+                        <div class="flex items-start">
+                            <div class="bg-purple-100 p-3 rounded-full mr-4">
+                                <i data-lucide="mail" class="w-6 h-6 text-purple-500"></i>
+                            </div>
+                            <div>
+                                <h4 class="font-bold text-gray-800 mb-1" data-lang="contact-email">Email</h4>
+                                <p class="text-gray-600" data-lang="contact-email-desc">li@marriottdeltahotel.com</p>
+                            </div>
+                        </div>
+                        <div class="pt-4">
+                            <a href="https://www.deltamarriotthotel.com/" target="_blank" class="inline-flex items-center px-6 py-3 bg-gray-800 text-white font-bold rounded-full hover:bg-gray-700 transition duration-300">
+                                <span data-lang="contact-learn-more">Learn More</span>
+                                <i data-lucide="arrow-right" class="w-5 h-5 ml-2"></i>
+                            </a>
+                        </div>
+                        <div class="flex items-start">
+                            <div class="bg-yellow-100 p-3 rounded-full mr-4">
+                                <i data-lucide="clock" class="w-6 h-6 text-yellow-500"></i>
+                            </div>
+                            <div>
+                                <h4 class="font-bold text-gray-800 mb-1" data-lang="contact-hours">Hours</h4>
+                                <p class="text-gray-600" data-lang="contact-hours-desc">Monday - Sunday: 9:00 AM - 9:00 PM</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="mt-10">
+                        <h4 class="font-bold text-gray-800 mb-4" data-lang="contact-follow">Follow Us</h4>
+                        <div class="flex space-x-4">
+                            <a href="#" class="bg-gray-100 p-3 rounded-full hover:bg-gray-200 transition duration-300">
+                                <i data-lucide="facebook" class="w-6 h-6 text-gray-600"></i>
+                            </a>
+                            <a href="#" class="bg-gray-100 p-3 rounded-full hover:bg-gray-200 transition duration-300">
+                                <i data-lucide="instagram" class="w-6 h-6 text-gray-600"></i>
+                            </a>
+                            <a href="#" class="bg-gray-100 p-3 rounded-full hover:bg-gray-200 transition duration-300">
+                                <i data-lucide="twitter" class="w-6 h-6 text-gray-600"></i>
+                            </a>
+                            <a href="#" class="bg-gray-100 p-3 rounded-full hover:bg-gray-200 transition duration-300">
+                                <i data-lucide="linkedin" class="w-6 h-6 text-gray-600"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="lg:w-1/2">
+                    <div class="bg-gray-50 p-8 rounded-lg shadow-lg flex flex-col items-center justify-center text-center h-full">
+                        <h3 class="text-2xl font-bold text-gray-800 mb-8" data-lang="contact-title">Get In Touch</h3>
+                        <div class="w-full space-y-6">
+                            <a href="https://www.deltamarriotthotel.com/reservations" target="_blank" class="btn-primary text-white font-bold py-4 px-8 rounded-full text-center block w-full hover:bg-opacity-90 transition duration-300">
+                                <span data-lang="hero-book-now">Book Now</span>
+                            </a>
+                            <a href="tel:+16268784478" class="bg-white text-gray-900 font-bold py-4 px-8 rounded-full text-center block w-full border-2 border-gray-900 hover:bg-gray-100 transition duration-300">
+                                <i data-lucide="phone" class="w-5 h-5 inline-block mr-2"></i>
+                                <span>(626) 878-4478</span>
+                            </a>
+                            <a href="https://www.deltamarriotthotel.com/" target="_blank" class="bg-transparent text-gray-900 font-bold py-4 px-8 rounded-full text-center block w-full border-2 border-gray-900 hover:bg-gray-900 hover:text-white transition duration-300">
+                                <span data-lang="hero-learn-more">Learn More</span>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-gray-900 text-white py-12">
+        <div class="container mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+                <div>
+                    <h3 class="text-xl font-bold mb-4">Grand Occasions</h3>
+                    <p class="text-gray-400 mb-4" data-lang="footer-p1">Your premier venue for unforgettable events.</p>
+                    <div class="flex space-x-4">
+                        <a href="#" class="text-gray-400 hover:text-white">
+                            <i data-lucide="facebook" class="w-5 h-5"></i>
+                        </a>
+                        <a href="#" class="text-gray-400 hover:text-white">
+                            <i data-lucide="instagram" class="w-5 h-5"></i>
+                        </a>
+                        <a href="#" class="text-gray-400 hover:text-white">
+                            <i data-lucide="twitter" class="w-5 h-5"></i>
+                        </a>
+                        <a href="#" class="text-gray-400 hover:text-white">
+                            <i data-lucide="linkedin" class="w-5 h-5"></i>
+                        </a>
+                    </div>
+                </div>
+
+                <div>
+                    <h3 class="text-lg font-bold mb-4" data-lang="footer-quick-links">Quick Links</h3>
+                    <ul class="space-y-2">
+                        <li><a href="#home" class="text-gray-400 hover:text-white" data-lang="footer-home">Home</a></li>
+                        <li><a href="#about" class="text-gray-400 hover:text-white" data-lang="footer-about">About Us</a></li>
+                        <li><a href="#events" class="text-gray-400 hover:text-white" data-lang="footer-events">Services</a></li>
+                        <li><a href="#gallery" class="text-gray-400 hover:text-white" data-lang="footer-gallery">Gallery</a></li>
+                        <li><a href="#testimonials" class="text-gray-400 hover:text-white" data-lang="footer-testimonials">Testimonials</a></li>
+                        <li><a href="https://www.deltamarriotthotel.com/reservations" target="_blank" class="text-gray-400 hover:text-white" data-lang="footer-contact">Contact</a></li>
+                    </ul>
+                </div>
+
+                <div>
+                    <h3 class="text-lg font-bold mb-4" data-lang="footer-events">Our Events</h3>
+                    <ul class="space-y-2">
+                        <li><a href="#events" class="text-gray-400 hover:text-white" data-lang="footer-weddings">Weddings</a></li>
+                        <li><a href="#events" class="text-gray-400 hover:text-white" data-lang="footer-baby-showers">Baby Showers</a></li>
+                        <li><a href="#events" class="text-gray-400 hover:text-white" data-lang="footer-corporate">Corporate Events</a></li>
+                        <li><a href="#events" class="text-gray-400 hover:text-white" data-lang="footer-birthdays">Birthday Parties</a></li>
+                    </ul>
+                </div>
+
+                <div>
+                    <h3 class="text-lg font-bold mb-4" data-lang="footer-contact">Contact Us</h3>
+                    <ul class="space-y-2">
+                        <li class="flex items-start">
+                            <i data-lucide="map-pin" class="w-5 h-5 text-gray-400 mr-2 mt-1"></i>
+                            <span class="text-gray-400" data-lang="footer-address">123 Event Street, City, State, 12345</span>
+                        </li>
+                        <li class="flex items-start">
+                            <i data-lucide="phone" class="w-5 h-5 text-gray-400 mr-2 mt-1"></i>
+                            <span class="text-gray-400" data-lang="footer-phone">(123) 456-7890</span>
+                        </li>
+                        <li class="flex items-start">
+                            <i data-lucide="mail" class="w-5 h-5 text-gray-400 mr-2 mt-1"></i>
+                            <span class="text-gray-400" data-lang="footer-email">li@marriottdeltahotel.com</span>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="border-t border-gray-800 mt-12 pt-8 text-center">
+                <p class="text-gray-400" data-lang="footer-copyright">© 2025 Grand Occasions. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Success Modal -->
+    <div id="success-modal" class="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 hidden">
+        <div class="bg-white rounded-lg p-8 max-w-md w-full">
+            <div class="text-center">
+                <div class="bg-green-100 text-green-500 p-4 rounded-full inline-block mb-4">
+                    <i data-lucide="check-circle" class="w-12 h-12"></i>
+                </div>
+                <h3 class="text-2xl font-bold text-gray-800 mb-2" data-lang="modal-title">Booking Request Submitted!</h3>
+                <p class="text-gray-600 mb-6" data-lang="modal-message">Thank you for choosing Grand Occasions. Our team will contact you shortly to confirm your booking.</p>
+                <button id="close-modal" class="btn-primary text-white font-bold py-2 px-6 rounded-lg">
+                    <span data-lang="modal-close">Close</span>
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Language translations
+        const translations = {
+            en: {
+                'nav-home': 'Home',
+                'nav-about': 'About',
+                'nav-events': 'Events',
+                'nav-gallery': 'Gallery',
+                'nav-testimonials': 'Testimonials',
+                'nav-contact': 'Contact',
+                'hero-title': 'Create Unforgettable Memories',
+                'hero-subtitle': 'Your Premier Venue for Weddings, Celebrations, and Corporate Events',
+                'hero-book-now': 'Book Now',
+                'hero-explore': 'Call Now',
+                'hero-learn-more': 'Learn More',
+                'about-title': 'About Our Venue',
+                'about-p1': 'Nestled in the heart of the city, our luxurious hotel restaurant offers the perfect setting for your special occasions. With elegant interiors and exceptional service, we transform every event into a memorable experience.',
+                'about-p2': 'Our versatile spaces can accommodate intimate gatherings or grand celebrations, making us the ideal choice for weddings, baby showers, corporate events, and birthday parties.',
+                'about-capacity': 'Large Capacity',
+                'about-capacity-desc': 'Up to 300 guests',
+                'about-catering': 'Exquisite Catering',
+                'about-catering-desc': 'Award-winning chefs',
+                'about-photo': 'Photo Ready',
+                'about-photo-desc': 'Stunning backdrops',
+                'about-service': 'Premium Service',
+                'about-service-desc': '24/7 support',
+                'events-title': 'Our Event Services',
+                'events-subtitle': 'We specialize in creating unforgettable experiences for every type of celebration.',
+                'events-wedding-title': 'Weddings',
+                'events-wedding-desc': 'Celebrate your love in our elegant spaces with customizable packages to suit your dream wedding.',
+                'events-wedding-feature-1': 'Custom decor options',
+                'events-wedding-feature-2': 'Catering services',
+                'events-wedding-feature-3': 'Event coordination',
+                'events-baby-title': 'Baby Showers',
+                'events-baby-desc': 'Celebrate the arrival of your little one with a joyous and memorable baby shower celebration.',
+                'events-baby-feature-1': 'Themed decorations',
+                'events-baby-feature-2': 'Special menu options',
+                'events-baby-feature-3': 'Photo opportunities',
+                'events-corporate-title': 'Corporate Events',
+                'events-corporate-desc': 'Impress your clients and team with our professional spaces for meetings, conferences, and dinners.',
+                'events-corporate-feature-1': 'AV equipment',
+                'events-corporate-feature-2': 'Catering services',
+                'events-corporate-feature-3': 'Flexible seating',
+                'events-birthday-title': 'Birthday Parties',
+                'events-birthday-desc': 'Make your special day unforgettable with our customizable birthday party packages.',
+                'events-birthday-feature-1': 'Themed decorations',
+                'events-birthday-feature-2': 'Cake and catering',
+                'events-birthday-feature-3': 'Entertainment options',
+                'events-learn-more': 'Learn More',
+                'gallery-title': 'Our Gallery',
+                'gallery-subtitle': 'Browse through our stunning venue transformations for various events.',
+                'testimonials-title': 'What Our Clients Say',
+                'testimonials-subtitle': 'Hear from our clients about their experiences with us.',
+                'testimonial-1': 'Our wedding was absolutely perfect! The venue was stunning, the staff was incredibly helpful, and the food was delicious. We couldn\'t have asked for a better experience.',
+                'testimonial-1-name': 'Sarah & John',
+                'testimonial-1-event': 'Wedding Clients',
+                'testimonial-2': 'We held our corporate gala here and it was a huge success. The space was elegant, the service was impeccable, and all our guests were impressed.',
+                'testimonial-2-name': 'Michael Thompson',
+                'testimonial-2-event': 'CEO, TechCorp',
+                'testimonial-3': 'My daughter\'s birthday party was magical! The decorations were beautiful, the staff was friendly and attentive, and all the kids had a fantastic time.',
+                'testimonial-3-name': 'Jennifer Lee',
+                'testimonial-3-event': 'Birthday Party Client',
+                'contact-title': 'Contact Us',
+                'contact-p1': 'Ready to plan your special event? Contact us today to schedule a tour or request more information.',
+                'contact-address': 'Address',
+                'contact-address-desc': '2200 E Holt Blvd, inside hotel, Ontario, CA 91761',
+                'contact-phone': 'Phone',
+                'contact-phone-desc': '(626) 878-4478',
+                'contact-email': 'Email',
+                'contact-email-desc': 'li@marriottdeltahotel.com',
+                'contact-learn-more': 'Learn More',
+                'contact-hours': 'Hours',
+                'contact-hours-desc': 'Monday - Sunday: 9:00 AM - 9:00 PM',
+                'contact-follow': 'Follow Us',
+                'booking-title': 'Book Your Event',
+                'booking-name': 'Full Name',
+                'booking-phone': 'Phone Number',
+                'booking-email': 'Email Address',
+                'booking-event-type': 'Event Type',
+                'booking-select-event': 'Select an event type',
+                'booking-wedding': 'Wedding',
+                'booking-baby-shower': 'Baby Shower / 满月酒',
+                'booking-corporate': 'Corporate Event',
+                'booking-birthday': 'Birthday Party',
+                'booking-other': 'Other',
+                'booking-date': 'Event Date',
+                'booking-guests': 'Number of Guests',
+                'booking-message': 'Additional Details',
+                'booking-message-placeholder': 'Tell us about your event...',
+                'booking-submit': 'Submit Booking Request',
+                'footer-p1': 'Your premier venue for unforgettable events.',
+                'footer-quick-links': 'Quick Links',
+                'footer-home': 'Home',
+                'footer-about': 'About Us',
+                'footer-events': 'Services',
+                'footer-gallery': 'Gallery',
+                'footer-testimonials': 'Testimonials',
+                'footer-contact': 'Contact',
+                'footer-events': 'Our Events',
+                'footer-weddings': 'Weddings',
+                'footer-baby-showers': 'Baby Showers',
+                'footer-corporate': 'Corporate Events',
+                'footer-birthdays': 'Birthday Parties',
+                'footer-contact': 'Contact Us',
+                'footer-address': '123 Event Street, City, State, 12345',
+                'footer-phone': '(123) 456-7890',
+                'footer-email': 'li@marriottdeltahotel.com',
+                'footer-copyright': '© 2025 Grand Occasions. All rights reserved.',
+                'modal-title': 'Booking Request Submitted!',
+                'modal-message': 'Thank you for choosing Grand Occasions. Our team will contact you shortly to confirm your booking.',
+                'modal-close': 'Close'
+            },
+            zh: {
+                'nav-home': '首页',
+                'nav-about': '关于我们',
+                'nav-events': '活动服务',
+                'nav-gallery': '画廊',
+                'nav-testimonials': '客户评价',
+                'nav-contact': '联系我们',
+                'hero-title': '创造难忘的回忆',
+                'hero-subtitle': '您举办婚礼、庆典和企业活动的首选场地',
+                'hero-book-now': '立即预订',
+                'hero-explore': '立即致电',
+                'hero-learn-more': '了解更多',
+                'about-title': '关于我们的场地',
+                'about-p1': '位于城市中心，我们豪华的酒店餐厅为您的特殊场合提供完美的环境。凭借优雅的内饰和卓越的服务，我们将每一场活动都转变为难忘的体验。',
+                'about-p2': '我们多功能的空间可容纳亲密聚会或盛大庆典，是举办婚礼、满月酒、企业活动和生日派对的理想选择。',
+                'about-capacity': '大容量',
+                'about-capacity-desc': '最多可容纳300位客人',
+                'about-catering': '精致餐饮',
+                'about-catering-desc': '获奖厨师团队',
+                'about-photo': '拍照胜地',
+                'about-photo-desc': '令人惊叹的背景',
+                'about-service': '优质服务',
+                'about-service-desc': '24/7全天候支持',
+                'events-title': '我们的活动服务',
+                'events-subtitle': '我们专注于为各种类型的庆典创造难忘的体验。',
+                'events-wedding-title': '婚礼',
+                'events-wedding-desc': '在我们优雅的空间中庆祝您的爱情，提供可定制的套餐，满足您的梦想婚礼。',
+                'events-wedding-feature-1': '定制装饰选项',
+                'events-wedding-feature-2': '餐饮服务',
+                'events-wedding-feature-3': '活动协调',
+                'events-baby-title': '满月酒',
+                'events-baby-desc': '以欢乐而难忘的满月酒庆典庆祝您小宝贝的到来。',
+                'events-baby-feature-1': '主题装饰',
+                'events-baby-feature-2': '特色菜单选项',
+                'events-baby-feature-3': '拍照机会',
+                'events-corporate-title': '企业活动',
+                'events-corporate-desc': '以我们专业的会议、 conference和晚宴空间给您的客户和团队留下深刻印象。',
+                'events-corporate-feature-1': '视听设备',
+                'events-corporate-feature-2': '餐饮服务',
+                'events-corporate-feature-3': '灵活的座位安排',
+                'events-birthday-title': '生日派对',
+                'events-birthday-desc': '通过我们可定制的生日派对套餐，让您的特殊日子难以忘怀。',
+                'events-birthday-feature-1': '主题装饰',
+                'events-birthday-feature-2': '蛋糕和餐饮',
+                'events-birthday-feature-3': '娱乐选项',
+                'events-learn-more': '了解更多',
+                'gallery-title': '我们的画廊',
+                'gallery-subtitle': '浏览我们为各种活动打造的令人惊叹的场地变换。',
+                'testimonials-title': '客户评价',
+                'testimonials-subtitle': '听听我们的客户对我们的体验评价。',
+                'testimonial-1': '我们的婚礼绝对完美！场地令人惊叹，工作人员非常有帮助，食物也很美味。我们无法要求更好的体验。',
+                'testimonial-1-name': 'Sarah & John',
+                'testimonial-1-event': '婚礼客户',
+                'testimonial-2': '我们在这里举办了企业 gala，取得了巨大成功。空间优雅，服务无可挑剔，所有客人都印象深刻。',
+                'testimonial-2-name': 'Michael Thompson',
+                'testimonial-2-event': 'TechCorp首席执行官',
+                'testimonial-3': '我女儿的生日派对太神奇了！装饰很漂亮，工作人员友好且细心，所有孩子都玩得很开心。',
+                'testimonial-3-name': 'Jennifer Lee',
+                'testimonial-3-event': '生日派对客户',
+                'contact-title': '联系我们',
+                'contact-p1': '准备好计划您的特殊活动了吗？今天联系我们预约参观或请求更多信息。',
+                'contact-address': '地址',
+                'contact-address-desc': '2200 E Holt Blvd, inside hotel, Ontario, CA 91761',
+                'contact-phone': '电话',
+                'contact-phone-desc': '(626) 878-4478',
+                'contact-email': '电子邮件',
+                'contact-email-desc': 'li@marriottdeltahotel.com',
+                'contact-learn-more': '了解更多',
+                'contact-hours': '营业时间',
+                'contact-hours-desc': '周一至周日：上午9:00 - 晚上9:00',
+                'contact-follow': '关注我们',
+                'booking-title': '预订您的活动',
+                'booking-name': '全名',
+                'booking-phone': '电话号码',
+                'booking-email': '电子邮件地址',
+                'booking-event-type': '活动类型',
+                'booking-select-event': '选择活动类型',
+                'booking-wedding': '婚礼',
+                'booking-baby-shower': '满月酒',
+                'booking-corporate': '企业活动',
+                'booking-birthday': '生日派对',
+                'booking-other': '其他',
+                'booking-date': '活动日期',
+                'booking-guests': '客人数量',
+                'booking-message': '其他详情',
+                'booking-message-placeholder': '告诉我们关于您的活动...',
+                'booking-submit': '提交预订请求',
+                'footer-p1': '您举办难忘活动的首选场地。',
+                'footer-quick-links': '快速链接',
+                'footer-home': '首页',
+                'footer-about': '关于我们',
+                'footer-events': '服务',
+                'footer-gallery': '画廊',
+                'footer-testimonials': '客户评价',
+                'footer-contact': '联系我们',
+                'footer-events': '我们的活动',
+                'footer-weddings': '婚礼',
+                'footer-baby-showers': '满月酒',
+                'footer-corporate': '企业活动',
+                'footer-birthdays': '生日派对',
+                'footer-contact': '联系我们',
+                'footer-address': '123 Event Street, City, State, 12345',
+                'footer-phone': '(123) 456-7890',
+                'footer-email': 'li@marriottdeltahotel.com',
+                'footer-copyright': '© 2025 Grand Occasions. 保留所有权利。',
+                'modal-title': '预订请求已提交！',
+                'modal-message': '感谢您选择Grand Occasions。我们的团队将很快与您联系确认您的预订。',
+                'modal-close': '关闭'
+            }
+        };
+
+        // Initialize Lucide icons
+        lucide.createIcons();
+
+        // Language toggle functionality
+        const langToggle = document.getElementById('lang-toggle');
+        const currentLang = document.getElementById('current-lang');
+        let currentLanguage = 'en';
+
+        langToggle.addEventListener('click', () => {
+            currentLanguage = currentLanguage === 'en' ? 'zh' : 'en';
+            currentLang.textContent = currentLanguage === 'en' ? 'English' : '中文';
+            updateLanguage();
+        });
+
+        function updateLanguage() {
+            document.querySelectorAll('[data-lang]').forEach(el => {
+                const key = el.getAttribute('data-lang');
+                if (translations[currentLanguage][key]) {
+                    el.textContent = translations[currentLanguage][key];
+                }
+            });
+
+            // Update placeholder for textarea
+            const messageTextarea = document.getElementById('message');
+            if (messageTextarea) {
+                messageTextarea.placeholder = translations[currentLanguage]['booking-message-placeholder'];
+            }
+
+            // Update document language attribute
+            document.documentElement.lang = currentLanguage;
+        }
+
+        // Mobile menu functionality
+        const mobileMenuButton = document.getElementById('mobile-menu-button');
+        const mobileNav = document.getElementById('mobile-nav');
+
+        mobileMenuButton.addEventListener('click', () => {
+            mobileNav.classList.toggle('hidden');
+            const icon = mobileMenuButton.querySelector('i');
+            if (mobileNav.classList.contains('hidden')) {
+                icon.setAttribute('data-lucide', 'menu');
+            } else {
+                icon.setAttribute('data-lucide', 'x');
+            }
+            lucide.createIcons();
+        });
+
+        // Close mobile menu when clicking on a nav link
+        document.querySelectorAll('#mobile-nav a').forEach(link => {
+            link.addEventListener('click', () => {
+                mobileNav.classList.add('hidden');
+                const icon = mobileMenuButton.querySelector('i');
+                icon.setAttribute('data-lucide', 'menu');
+                lucide.createIcons();
+            });
+        });
+
+        // Header scroll effect
+        const header = document.getElementById('header');
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 50) {
+                header.classList.add('py-2');
+                header.classList.remove('py-4');
+            } else {
+                header.classList.add('py-4');
+                header.classList.remove('py-2');
+            }
+        });
+
+        // Smooth scrolling for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                const targetId = this.getAttribute('href');
+                const targetElement = document.querySelector(targetId);
+                
+                if (targetElement) {
+                    window.scrollTo({
+                        top: targetElement.offsetTop - 80,
+                        behavior: 'smooth'
+                    });
+
+                    // Update active nav link
+                    document.querySelectorAll('.nav-link').forEach(link => {
+                        link.classList.remove('active');
+                    });
+                    if (this.classList.contains('nav-link')) {
+                        this.classList.add('active');
+                    }
+                }
+            });
+        });
+
+        // Form submission
+        const bookingForm = document.getElementById('booking-form');
+        const successModal = document.getElementById('success-modal');
+        const closeModal = document.getElementById('close-modal');
+
+        bookingForm.addEventListener('submit', (e) => {
+            e.preventDefault();
+            
+            // Simple form validation
+            const name = document.getElementById('name').value;
+            const phone = document.getElementById('phone').value;
+            const email = document.getElementById('email').value;
+            const eventType = document.getElementById('event-type').value;
+            const eventDate = document.getElementById('event-date').value;
+            const guests = document.getElementById('guests').value;
+
+            if (!name || !phone || !email || !eventType || !eventDate || !guests) {
+                alert(currentLanguage === 'en' ? 'Please fill in all required fields.' : '请填写所有必填字段。');
+                return;
+            }
+
+            // Show success modal
+            successModal.classList.remove('hidden');
+
+            // Reset form
+            bookingForm.reset();
+        });
+
+        closeModal.addEventListener('click', () => {
+            successModal.classList.add('hidden');
+        });
+
+        // Close modal when clicking outside
+        successModal.addEventListener('click', (e) => {
+            if (e.target === successModal) {
+                successModal.classList.add('hidden');
+            }
+        });
+
+        // Intersection Observer for animation on scroll
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('animate-fade-in');
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('section > div > div').forEach(el => {
+            observer.observe(el);
+        });
+
+        // Initialize
+        updateLanguage();
+    </script>
+</body>
+</html>
